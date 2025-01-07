@@ -127,3 +127,195 @@ document.addEventListener('click', (e) => {
 navLinks.addEventListener('click', (e) => {
     e.stopPropagation();
 });
+
+// Language switcher functionality
+document.addEventListener('DOMContentLoaded', function() {
+    const langToggle = document.getElementById('langToggle');
+    const htmlTag = document.documentElement;
+    
+    // Text content for both languages
+    const translations = {
+        ar: {
+            // Navigation
+            home: 'الرئيسية',
+            services: 'خدماتنا',
+            portfolio: 'أعمالنا',
+            contact: 'اتصل بنا',
+            whatsapp: 'تواصل واتساب',
+            switchText: 'English',
+            
+            // Hero Section
+            heroTitle: 'Dream.App',
+            heroSubtitle: 'نحول أحلامك إلى تطبيقات ذكية',
+            ctaButton: 'ابدأ مشروعك الآن',
+            
+            // Services Section
+            servicesTitle: 'خدماتنا',
+            
+            // Menu App Service
+            menuAppTitle: 'تطبيقات المنيو الإلكتروني',
+            menuAppDesc: 'حلول متكاملة للمطاعم والكافيهات لعرض قوائم الطعام بشكل تفاعلي',
+            
+            // Teacher App Service
+            teacherAppTitle: 'تطبيقات المدرسين',
+            teacherAppDesc: 'منصات تعليمية متطورة تربط المدرسين بالطلاب',
+            
+            // Recipe App Service
+            recipeAppTitle: 'تطبيقات وصفات الطعام',
+            recipeAppDesc: 'تطبيقات سهلة الاستخدام لمشاركة وحفظ الوصفات',
+            
+            // Portfolio Section
+            portfolioTitle: 'معرض أعمالنا',
+            portfolioSubtitle: 'نماذج من تطبيقاتنا السابقة',
+            
+            // Contact Section
+            contactTitle: 'تواصل معنا',
+            contactDesc: 'نحن هنا لمساعدتك في تحويل فكرتك إلى تطبيق ناجح',
+            nameLabel: 'الاسم',
+            emailLabel: 'البريد الإلكتروني',
+            messageLabel: 'الرسالة',
+            submitButton: 'إرسال',
+            
+            // Footer
+            footerText: 'جميع الحقوق محفوظة',
+            privacyPolicy: 'سياسة الخصوصية',
+            termsOfService: 'شروط الخدمة'
+        },
+        en: {
+            // Navigation
+            home: 'Home',
+            services: 'Services',
+            portfolio: 'Portfolio',
+            contact: 'Contact',
+            whatsapp: 'WhatsApp',
+            switchText: 'عربي',
+            
+            // Hero Section
+            heroTitle: 'Dream.App',
+            heroSubtitle: 'Turn Your Dreams Into Smart Apps',
+            ctaButton: 'Start Your Project Now',
+            
+            // Services Section
+            servicesTitle: 'Our Services',
+            
+            // Menu App Service
+            menuAppTitle: 'Digital Menu Applications',
+            menuAppDesc: 'Comprehensive solutions for restaurants and cafes to display menus interactively',
+            
+            // Teacher App Service
+            teacherAppTitle: 'Teacher Applications',
+            teacherAppDesc: 'Advanced educational platforms connecting teachers with students',
+            
+            // Recipe App Service
+            recipeAppTitle: 'Recipe Applications',
+            recipeAppDesc: 'User-friendly applications for sharing and saving recipes',
+            
+            // Portfolio Section
+            portfolioTitle: 'Our Portfolio',
+            portfolioSubtitle: 'Examples of our previous applications',
+            
+            // Contact Section
+            contactTitle: 'Contact Us',
+            contactDesc: 'We are here to help turn your idea into a successful app',
+            nameLabel: 'Name',
+            emailLabel: 'Email',
+            messageLabel: 'Message',
+            submitButton: 'Send',
+            
+            // Footer
+            footerText: 'All Rights Reserved',
+            privacyPolicy: 'Privacy Policy',
+            termsOfService: 'Terms of Service'
+        }
+    };
+
+    function switchLanguage() {
+        const currentLang = htmlTag.getAttribute('lang');
+        const newLang = currentLang === 'ar' ? 'en' : 'ar';
+        
+        // Update HTML lang attribute
+        htmlTag.setAttribute('lang', newLang);
+        
+        // Update button text
+        langToggle.querySelector('span').textContent = translations[newLang].switchText;
+        
+        // Update navigation links
+        document.querySelector('a[href="#home"] span').textContent = translations[newLang].home;
+        document.querySelector('a[href="#services"] span').textContent = translations[newLang].services;
+        document.querySelector('a[href="#portfolio"] span').textContent = translations[newLang].portfolio;
+        document.querySelector('a[href="#contact"] span').textContent = translations[newLang].contact;
+        document.querySelector('.whatsapp-link span').textContent = translations[newLang].whatsapp;
+        
+        // Update hero section
+        document.querySelector('.hero-content h1').textContent = translations[newLang].heroTitle;
+        document.querySelector('.hero-content p').textContent = translations[newLang].heroSubtitle;
+        document.querySelector('.cta-button').textContent = translations[newLang].ctaButton;
+        
+        // Update services section
+        document.querySelector('#services h2').textContent = translations[newLang].servicesTitle;
+        
+        // Update service cards
+        const serviceCards = document.querySelectorAll('.service-card');
+        serviceCards[0].querySelector('h3').textContent = translations[newLang].menuAppTitle;
+        serviceCards[0].querySelector('p').textContent = translations[newLang].menuAppDesc;
+        
+        serviceCards[1].querySelector('h3').textContent = translations[newLang].teacherAppTitle;
+        serviceCards[1].querySelector('p').textContent = translations[newLang].teacherAppDesc;
+        
+        serviceCards[2].querySelector('h3').textContent = translations[newLang].recipeAppTitle;
+        serviceCards[2].querySelector('p').textContent = translations[newLang].recipeAppDesc;
+        
+        // Update portfolio section
+        const portfolioSection = document.querySelector('#portfolio');
+        if (portfolioSection) {
+            portfolioSection.querySelector('h2').textContent = translations[newLang].portfolioTitle;
+            const subtitle = portfolioSection.querySelector('.section-subtitle');
+            if (subtitle) subtitle.textContent = translations[newLang].portfolioSubtitle;
+        }
+        
+        // Update contact section
+        const contactSection = document.querySelector('#contact');
+        if (contactSection) {
+            contactSection.querySelector('h2').textContent = translations[newLang].contactTitle;
+            const contactDesc = contactSection.querySelector('.contact-desc');
+            if (contactDesc) contactDesc.textContent = translations[newLang].contactDesc;
+            
+            // Update form labels
+            const labels = contactSection.querySelectorAll('label');
+            labels.forEach(label => {
+                if (label.htmlFor === 'name') label.textContent = translations[newLang].nameLabel;
+                if (label.htmlFor === 'email') label.textContent = translations[newLang].emailLabel;
+                if (label.htmlFor === 'message') label.textContent = translations[newLang].messageLabel;
+            });
+            
+            const submitBtn = contactSection.querySelector('button[type="submit"]');
+            if (submitBtn) submitBtn.textContent = translations[newLang].submitButton;
+        }
+        
+        // Update footer
+        const footer = document.querySelector('footer');
+        if (footer) {
+            const footerText = footer.querySelector('.footer-text');
+            if (footerText) footerText.textContent = translations[newLang].footerText;
+            
+            const privacyLink = footer.querySelector('a[href*="privacy"]');
+            if (privacyLink) privacyLink.textContent = translations[newLang].privacyPolicy;
+            
+            const termsLink = footer.querySelector('a[href*="terms"]');
+            if (termsLink) termsLink.textContent = translations[newLang].termsOfService;
+        }
+        
+        // Store language preference
+        localStorage.setItem('preferredLanguage', newLang);
+    }
+
+    // Initialize language from localStorage or default to Arabic
+    const savedLang = localStorage.getItem('preferredLanguage');
+    if (savedLang && savedLang !== htmlTag.getAttribute('lang')) {
+        htmlTag.setAttribute('lang', savedLang);
+        switchLanguage();
+    }
+
+    // Add click event listener to language toggle button
+    langToggle.addEventListener('click', switchLanguage);
+});
