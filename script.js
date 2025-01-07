@@ -79,9 +79,13 @@ window.addEventListener('scroll', () => {
 // Mobile Menu Toggle
 const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
 const navLinks = document.querySelector('.nav-links');
+const menuOverlay = document.querySelector('.menu-overlay');
 
-mobileMenuBtn.addEventListener('click', () => {
+function toggleMenu() {
     navLinks.classList.toggle('active');
+    menuOverlay.classList.toggle('active');
+    document.body.style.overflow = navLinks.classList.contains('active') ? 'hidden' : '';
+    
     // Change menu icon
     const icon = mobileMenuBtn.querySelector('i');
     if (navLinks.classList.contains('active')) {
@@ -91,24 +95,35 @@ mobileMenuBtn.addEventListener('click', () => {
         icon.classList.remove('fa-times');
         icon.classList.add('fa-bars');
     }
+}
+
+mobileMenuBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    toggleMenu();
 });
+
+// Close menu when clicking overlay
+menuOverlay.addEventListener('click', toggleMenu);
 
 // Close mobile menu when clicking on a link
 document.querySelectorAll('.nav-links a').forEach(link => {
     link.addEventListener('click', () => {
-        navLinks.classList.remove('active');
-        const icon = mobileMenuBtn.querySelector('i');
-        icon.classList.remove('fa-times');
-        icon.classList.add('fa-bars');
+        if (navLinks.classList.contains('active')) {
+            toggleMenu();
+        }
     });
 });
 
 // Close mobile menu when clicking outside
 document.addEventListener('click', (e) => {
-    if (!e.target.closest('nav') && navLinks.classList.contains('active')) {
-        navLinks.classList.remove('active');
-        const icon = mobileMenuBtn.querySelector('i');
-        icon.classList.remove('fa-times');
-        icon.classList.add('fa-bars');
+    if (navLinks.classList.contains('active') && 
+        !e.target.closest('.nav-links') && 
+        !e.target.closest('.mobile-menu-btn')) {
+        toggleMenu();
     }
+});
+
+// Prevent menu close when clicking inside nav
+navLinks.addEventListener('click', (e) => {
+    e.stopPropagation();
 });

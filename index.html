@@ -9,20 +9,57 @@
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
+    <div class="menu-overlay"></div>
     <header>
         <nav>
             <a href="#" class="logo">
                 <i class="fas fa-mobile-alt"></i>
                 Dream.App
             </a>
-            <button class="mobile-menu-btn">
+            <button class="mobile-menu-btn" aria-label="القائمة">
                 <i class="fas fa-bars"></i>
             </button>
             <ul class="nav-links">
-                <li><a href="#home">الرئيسية</a></li>
-                <li><a href="#services">خدماتنا</a></li>
-                <li><a href="#portfolio">أعمالنا</a></li>
-                <li><a href="#contact">اتصل بنا</a></li>
+                <li>
+                    <a href="#home">
+                        <div class="nav-icon">
+                            <i class="fas fa-home"></i>
+                        </div>
+                        <span>الرئيسية</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#services">
+                        <div class="nav-icon">
+                            <i class="fas fa-laptop-code"></i>
+                        </div>
+                        <span>خدماتنا</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#portfolio">
+                        <div class="nav-icon">
+                            <i class="fas fa-mobile-screen"></i>
+                        </div>
+                        <span>أعمالنا</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#contact">
+                        <div class="nav-icon">
+                            <i class="fas fa-headset"></i>
+                        </div>
+                        <span>اتصل بنا</span>
+                    </a>
+                </li>
+                <li class="whatsapp-link">
+                    <a href="https://wa.me/201090470326" target="_blank">
+                        <div class="nav-icon">
+                            <i class="fab fa-whatsapp"></i>
+                        </div>
+                        <span>تواصل واتساب</span>
+                    </a>
+                </li>
             </ul>
         </nav>
     </header>
