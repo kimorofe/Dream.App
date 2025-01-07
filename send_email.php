@@ -1,48 +1,94 @@
 <?php
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
+require 'vendor/autoload.php';
+
 header('Content-Type: application/json');
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: POST');
 header('Access-Control-Allow-Headers: Content-Type');
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $data = json_decode(file_get_contents('php://input'), true);
-    
-    $name = $data['name'] ?? '';
-    $email = $data['email'] ?? '';
-    $message = $data['message'] ?? '';
-    
-    $to = 'dreamappforprogramming@gmail.com';
-    $subject = 'New Contact Form Submission from Dream.App';
-    
-    $headers = array(
-        'From: ' . $email,
-        'Reply-To: ' . $email,
-        'X-Mailer: PHP/' . phpversion(),
-        'Content-Type: text/html; charset=UTF-8'
-    );
-    
-    $emailBody = "
+    try {
+        $data = json_decode(file_get_contents('php://input'), true);
+        
+        $name = $data['name'] ?? '';
+        $email = $data['email'] ?? '';
+        $message = $data['message'] ?? '';
+        
+        // Create a new PHPMailer instance
+        $mail = new PHPMailer(true);
+        
+        // Server settings
+        $mail->isSMTP();
+        $mail->Host = 'smtp.gmail.com';
+        $mail->SMTPAuth = true;
+        $mail->Username = 'dreamappforprogramming@gmail.com';
+        $mail->Password = 'your_app_specific_password'; // Use App Password from Google Account
+        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+        $mail->Port = 587;
+        $mail->CharSet = 'UTF-8';
+        
+        // Recipients
+        $mail->setFrom($email, $name);
+        $mail->addAddress('dreamappforprogramming@gmail.com', 'Dream App');
+        $mail->addReplyTo($email, $name);
+        
+        // Content
+        $mail->isHTML(true);
+        $mail->Subject = 'New Contact Form Submission - Dream.App';
+        
+        // Email template
+        $emailBody = "
         <html>
         <head>
-            <title>New Contact Form Submission</title>
+            <style>
+                body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
+                .container { max-width: 600px; margin: 0 auto; padding: 20px; }
+                .header { background: #1e3799; color: white; padding: 20px; text-align: center; border-radius: 5px 5px 0 0; }
+                .content { background: #f9f9f9; padding: 20px; border-radius: 0 0 5px 5px; }
+                .field { margin-bottom: 20px; }
+                .label { font-weight: bold; color: #1e3799; }
+                .value { margin-top: 5px; }
+                .footer { text-align: center; margin-top: 20px; font-size: 0.9em; color: #666; }
+            </style>
         </head>
         <body>
-            <h2>New Contact Form Submission</h2>
-            <p><strong>Name:</strong> " . htmlspecialchars($name) . "</p>
-            <p><strong>Email:</strong> " . htmlspecialchars($email) . "</p>
-            <p><strong>Message:</strong></p>
-            <p>" . nl2br(htmlspecialchars($message)) . "</p>
+            <div class='container'>
+                <div class='header'>
+                    <h2>New Contact Form Submission</h2>
+                </div>
+                <div class='content'>
+                    <div class='field'>
+                        <div class='label'>Name:</div>
+                        <div class='value'>" . htmlspecialchars($name) . "</div>
+                    </div>
+                    <div class='field'>
+                        <div class='label'>Email:</div>
+                        <div class='value'>" . htmlspecialchars($email) . "</div>
+                    </div>
+                    <div class='field'>
+                        <div class='label'>Message:</div>
+                        <div class='value'>" . nl2br(htmlspecialchars($message)) . "</div>
+                    </div>
+                </div>
+                <div class='footer'>
+                    <p>This email was sent from Dream.App contact form</p>
+                </div>
+            </div>
         </body>
         </html>
-    ";
-    
-    $success = mail($to, $subject, $emailBody, implode("\r\n", $headers));
-    
-    if ($success) {
+        ";
+        
+        $mail->Body = $emailBody;
+        $mail->AltBody = "Name: $name\nEmail: $email\nMessage: $message";
+        
+        $mail->send();
         echo json_encode(['success' => true, 'message' => 'Email sent successfully']);
-    } else {
+    } catch (Exception $e) {
         http_response_code(500);
-        echo json_encode(['success' => false, 'message' => 'Failed to send email']);
+        echo json_encode(['success' => false, 'message' => 'Message could not be sent. Mailer Error: ' . $mail->ErrorInfo]);
     }
 } else {
     http_response_code(405);
