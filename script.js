@@ -319,3 +319,68 @@ document.addEventListener('DOMContentLoaded', function() {
     // Add click event listener to language toggle button
     langToggle.addEventListener('click', switchLanguage);
 });
+
+// Form submission handling
+document.addEventListener('DOMContentLoaded', function() {
+    const contactForm = document.querySelector('#contact form');
+    if (contactForm) {
+        contactForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const formData = {
+                name: this.querySelector('input[name="name"]').value,
+                email: this.querySelector('input[name="email"]').value,
+                message: this.querySelector('textarea[name="message"]').value
+            };
+            
+            const submitButton = this.querySelector('button[type="submit"]');
+            const originalButtonText = submitButton.textContent;
+            
+            // Get current language
+            const currentLang = document.documentElement.getAttribute('lang');
+            const loadingText = currentLang === 'ar' ? 'جاري الإرسال...' : 'Sending...';
+            const successText = currentLang === 'ar' ? 'تم الإرسال بنجاح!' : 'Sent successfully!';
+            const errorText = currentLang === 'ar' ? 'حدث خطأ. حاول مرة أخرى.' : 'Error occurred. Please try again.';
+            
+            try {
+                submitButton.textContent = loadingText;
+                submitButton.disabled = true;
+                
+                const response = await fetch('send_email.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(formData)
+                });
+                
+                const result = await response.json();
+                
+                if (result.success) {
+                    submitButton.textContent = successText;
+                    submitButton.style.backgroundColor = '#4CAF50';
+                    this.reset();
+                    
+                    // Reset button after 3 seconds
+                    setTimeout(() => {
+                        submitButton.textContent = originalButtonText;
+                        submitButton.style.backgroundColor = '';
+                        submitButton.disabled = false;
+                    }, 3000);
+                } else {
+                    throw new Error(result.message);
+                }
+            } catch (error) {
+                submitButton.textContent = errorText;
+                submitButton.style.backgroundColor = '#f44336';
+                
+                // Reset button after 3 seconds
+                setTimeout(() => {
+                    submitButton.textContent = originalButtonText;
+                    submitButton.style.backgroundColor = '';
+                    submitButton.disabled = false;
+                }, 3000);
+            }
+        });
+    }
+});

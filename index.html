@@ -76,7 +76,7 @@
             <p>نحول أحلامك إلى تطبيقات ذكية</p>
             <a href="https://wa.me/201090470326" target="_blank" class="cta-button">
                 <i class="fab fa-whatsapp"></i>
-                ابدأ مشروعك الآن
+                <span>ابدأ مشروعك الآن</span>
             </a>
         </div>
     </section>
@@ -125,15 +125,23 @@
         </section>
 
         <section id="contact" class="contact">
-            <h2>اتصل بنا</h2>
-            <div class="contact-container">
-                <form id="contact-form">
-                    <input type="text" placeholder="الاسم" required>
-                    <input type="email" placeholder="البريد الإلكتروني" required>
-                    <textarea placeholder="رسالتك" required></textarea>
-                    <button type="submit" class="cta-button">إرسال</button>
-                </form>
-            </div>
+            <h2>تواصل معنا</h2>
+            <p class="contact-desc">نحن هنا لمساعدتك في تحويل فكرتك إلى تطبيق ناجح</p>
+            <form>
+                <div class="form-group">
+                    <label for="name">الاسم</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">البريد الإلكتروني</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">الرسالة</label>
+                    <textarea id="message" name="message" required></textarea>
+                </div>
+                <button type="submit">إرسال</button>
+            </form>
         </section>
     </main>
 
@@ -146,7 +154,7 @@
             <div class="contact-info">
                 <h4>معلومات التواصل</h4>
                 <ul>
-                    <li><i class="fas fa-envelope"></i> dreamappforprogramming@gmail.com</li>
+                    <li><i class="fas fa-envelope"></i> dreamforprogramming@gmail.com</li>
                     <li><i class="fas fa-phone"></i> +201090470326</li>
                     <li><i class="fas fa-map-marker-alt"></i> مصر، القاهرة</li>
                 </ul>
