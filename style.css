@@ -87,6 +87,22 @@ nav {
     width: 100%;
 }
 
+/* Mobile Menu Button */
+.mobile-menu-btn {
+    display: none;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    transition: color 0.3s;
+}
+
+.mobile-menu-btn:hover {
+    color: var(--secondary-color);
+}
+
 /* Hero Section */
 .hero {
     height: 100vh;
@@ -470,5 +486,59 @@ footer {
     
     .social-links {
         justify-content: center;
+    }
+    
+    .mobile-menu-btn {
+        display: block;
+    }
+
+    .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        right: 0;
+        width: 100%;
+        background-color: var(--primary-color);
+        padding: 1rem 0;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        transform: translateY(-10px);
+        opacity: 0;
+        transition: all 0.3s ease;
+    }
+
+    .nav-links.active {
+        display: flex;
+        transform: translateY(0);
+        opacity: 1;
+    }
+
+    .nav-links li {
+        width: 100%;
+        text-align: center;
+    }
+
+    .nav-links li a {
+        display: block;
+        padding: 1rem 2rem;
+    }
+
+    .nav-links li a:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    /* Adjust header for mobile */
+    header {
+        padding: 0.5rem 1rem;
+    }
+
+    nav {
+        position: relative;
+    }
+
+    .logo {
+        font-size: 1.5rem;
     }
 }
