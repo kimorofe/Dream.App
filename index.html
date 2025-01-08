@@ -21,10 +21,12 @@
             </button>
             <ul class="nav-links">
                 <li class="lang-switch">
-                    <button id="langToggle" class="lang-toggle">
-                        <i class="fas fa-globe"></i>
-                        <span>English</span>
-                    </button>
+                    <a href="#" class="lang-toggle" id="langToggle" onclick="toggleLanguage()">
+                        <div class="nav-icon">
+                            <i class="fas fa-globe"></i>
+                        </div>
+                        <span id="langText">English</span>
+                    </a>
                 </li>
                 <li>
                     <a href="#home">
@@ -37,7 +39,7 @@
                 <li>
                     <a href="#services">
                         <div class="nav-icon">
-                            <i class="fas fa-laptop-code"></i>
+                            <i class="fas fa-cogs"></i>
                         </div>
                         <span>خدماتنا</span>
                     </a>
@@ -45,32 +47,22 @@
                 <li>
                     <a href="#portfolio">
                         <div class="nav-icon">
-                            <i class="fas fa-mobile-screen"></i>
+                            <i class="fas fa-briefcase"></i>
                         </div>
                         <span>أعمالنا</span>
                     </a>
                 </li>
                 <li>
-                    <a href="#contact">
-                        <div class="nav-icon">
-                            <i class="fas fa-headset"></i>
-                        </div>
-                        <span>اتصل بنا</span>
-                    </a>
-                </li>
-                <li>
                     <a href="https://www.e-droid.net/">
                         <div class="nav-icon">
-                            <i class="fas fa-user-cog"></i>
+                            <i class="fas fa-users-cog"></i>
                         </div>
                         <span>لوحة أصحاب التطبيقات</span>
                     </a>
                 </li>
                 <li class="whatsapp-link">
-                    <a href="https://wa.me/201090470326" target="_blank">
-                        <div class="nav-icon">
-                            <i class="fab fa-whatsapp"></i>
-                        </div>
+                    <a href="https://wa.me/201090470326">
+                        <i class="fab fa-whatsapp"></i>
                         <span>تواصل واتساب</span>
                     </a>
                 </li>
@@ -81,7 +73,7 @@
     <section id="home" class="hero">
         <div class="hero-content">
             <h1>Dream.App</h1>
-            <p>نحول أحلامك إلى تطبيقات ذكية</p>
+            <p>نحول أحلامك إلى تطبيقات ذكية ومواقع ويب</p>
             <a href="https://wa.me/201090470326" target="_blank" class="cta-button">
                 <i class="fab fa-whatsapp"></i>
                 <span>ابدأ مشروعك الآن</span>
@@ -109,19 +101,19 @@
                     <i class="fas fa-chalkboard-teacher"></i>
                     <h3>تطبيقات المدرسين</h3>
                     <p>منصات تعليمية متطورة تربط المدرسين بالطلاب</p>
-                    <img src="https://img.freepik.com/free-photo/programming-code-with-laptop-background_23-2150170140.jpg" alt="تطبيق المدرسين">
+                    <img src="https://img.freepik.com/free-photo/teacher-helping-student-class_23-2148892598.jpg" alt="تطبيق المدرسين">
                 </div>
                 <div class="service-card">
                     <i class="fas fa-code"></i>
                     <h3>تطبيقات وصفات الطعام</h3>
                     <p>تطبيقات سهلة الاستخدام لمشاركة وحفظ الوصفات</p>
-                    <img src="https://img.freepik.com/free-photo/developer-typing-code-laptop-dark-room_1098-20128.jpg" alt="تطبيق الوصفات">
+                    <img src="https://img.freepik.com/free-photo/top-view-table-full-delicious-food-composition_23-2149141353.jpg" alt="تطبيق الوصفات">
                 </div>
             </div>
         </section>
 
         <section id="portfolio" class="portfolio">
-            <h2>أعمالنا المميزة</h2>
+            <h2><i class="fas fa-briefcase"></i> أعمالنا المميزة</h2>
             <div class="portfolio-grid">
                 <div class="portfolio-item">
                     <img src="https://i.imgur.com/mxYOC2K.png" alt="تطبيق دريم شوبينج">
@@ -137,21 +129,6 @@
         <section id="contact" class="contact">
             <h2>تواصل معنا</h2>
             <p class="contact-desc">نحن هنا لمساعدتك في تحويل فكرتك إلى تطبيق ناجح</p>
-            <form>
-                <div class="form-group">
-                    <label for="name">الاسم</label>
-                    <input type="text" id="name" name="name" required>
-                </div>
-                <div class="form-group">
-                    <label for="email">البريد الإلكتروني</label>
-                    <input type="email" id="email" name="email" required>
-                </div>
-                <div class="form-group">
-                    <label for="message">الرسالة</label>
-                    <textarea id="message" name="message" required></textarea>
-                </div>
-                <button type="submit">إرسال</button>
-            </form>
         </section>
     </main>
 
@@ -164,22 +141,24 @@
             <div class="contact-info">
                 <h4>معلومات التواصل</h4>
                 <ul>
-                    <li><i class="fas fa-envelope"></i> dreamforprogramming@gmail.com</li>
+                    <li><i class="fas fa-envelope"></i> dreamappforprogramming@gmail.com</li>
                     <li><i class="fas fa-phone"></i> +201090470326</li>
                     <li><i class="fas fa-map-marker-alt"></i> مصر، القاهرة</li>
                 </ul>
-            </div>
-            <div class="social-links">
-                <a href="#"><i class="fab fa-facebook"></i></a>
-                <a href="#"><i class="fab fa-twitter"></i></a>
-                <a href="#"><i class="fab fa-instagram"></i></a>
-                <a href="#"><i class="fab fa-linkedin"></i></a>
             </div>
         </div>
         <div class="footer-bottom">
             <p>&copy; 2025 Dream.App. جميع الحقوق محفوظة</p>
         </div>
     </footer>
+
+    <a href="https://www.facebook.com/profile.php?id=100057732244500&mibextid=ZbWKwL" class="floating-facebook">
+        <i class="fab fa-facebook-f"></i>
+    </a>
+
+    <a href="https://t.me/DreamAppForProgramming" class="floating-telegram">
+        <i class="fab fa-telegram"></i>
+    </a>
 
     <a href="https://wa.me/201090470326" class="floating-whatsapp">
         <i class="fab fa-whatsapp"></i>
