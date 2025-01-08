@@ -179,7 +179,7 @@ const translations = {
 
         // Contact Section
         contactTitle: 'تواصل معنا',
-        contactDesc: 'نحن هنا لمساعدتك في تحويل فكرتك إلى تطبيق ناجح',
+        contactDesc: 'نحن هنا لمساعدتك في تحويل فكرتك إلى تطبيق أو موقع الكتروني ناجح',
 
         // Footer
         footerAbout: 'نحن نقدم حلول تقنية مبتكرة لتطوير تطبيقات الموبايل',

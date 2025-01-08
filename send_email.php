@@ -74,7 +74,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     </div>
                 </div>
                 <div class='footer'>
-                    <p>This email was sent from Dream.App contact form</p>
+                    <p>نحن هنا لمساعدتك في تحويل فكرتك إلى تطبيق أو موقع الكتروني ناجح</p>
                 </div>
             </div>
         </body>
